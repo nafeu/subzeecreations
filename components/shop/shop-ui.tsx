@@ -7,12 +7,12 @@ import { formatPrice, products, type Product } from '@/lib/products'
 import { useCart } from './cart-context'
 
 export function ProductArtwork({ product, large = false }: { product: Product; large?: boolean }) {
-  return <div className={`product-art product-art-${product.pattern} ${large ? 'product-art-large' : ''}`} style={{ backgroundColor: product.color }} aria-label={`${product.name} product illustration`} role="img"><div className="art-label">field<br />notes</div><span>{product.category}</span></div>
+  return <div className={`product-art product-art-${product.pattern} ${large ? 'product-art-large' : ''}`} style={{ backgroundColor: product.color }} aria-label={`${product.name} product illustration`} role="img"><div className="art-label">subzee<br />notes</div><span>{product.category}</span></div>
 }
 
 export function SiteHeader() {
   const { count } = useCart()
-  return <header className="site-header"><Link href="/#top" className="brand">STUDIO <em>FIELD</em></Link><nav><Link href="/#shop">Shop</Link><Link href="/#about">About</Link><Link href="/#contact">Contact</Link></nav><Link href="/#cart" className="cart-link"><ShoppingBag size={16} strokeWidth={1.5} /> Cart <span>{count.toString().padStart(2, '0')}</span></Link></header>
+  return <header className="site-header"><Link href="/#top" className="brand"><span className="brand-bold">subzee</span><span className="brand-light">creations</span></Link><nav><Link href="/#shop">Shop</Link><Link href="/#about">About</Link><Link href="/#contact">Contact</Link></nav><Link href="/#cart" className="cart-link"><ShoppingBag size={16} strokeWidth={1.5} /> Cart <span>{count.toString().padStart(2, '0')}</span></Link></header>
 }
 
 export function ProductCard({ product }: { product: Product }) {

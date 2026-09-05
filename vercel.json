@@ -1,13 +1,6 @@
 {
   "installCommand": "npm install",
   "buildCommand": "npm run build",
-  "redirects": [
-    {
-      "source": "/admin",
-      "destination": "/admin/",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/admin/(.*)",

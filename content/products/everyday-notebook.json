@@ -1,0 +1,11 @@
+{
+  "slug": "everyday-notebook",
+  "name": "Everyday Notebook",
+  "category": "Notebooks",
+  "price": 24,
+  "description": "A quiet place for loud ideas, small lists, and everything in between.",
+  "details": ["A5 softcover", "160 dotted pages", "FSC-certified paper"],
+  "color": "#d7dfcf",
+  "pattern": "grid",
+  "order": 1
+}

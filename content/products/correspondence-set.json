@@ -1,0 +1,11 @@
+{
+  "slug": "correspondence-set",
+  "name": "Correspondence Set",
+  "category": "Paper goods",
+  "price": 18,
+  "description": "A considered set for sending a little more thought through the post.",
+  "details": ["8 folded cards", "8 recycled envelopes", "Soy-based ink"],
+  "color": "#e7d8cc",
+  "pattern": "lines",
+  "order": 2
+}

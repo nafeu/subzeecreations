@@ -1,0 +1,120 @@
+# Decap CMS — edit at /admin
+# Local editing: run `npm run cms` then open http://localhost:3000/admin
+local_backend: true
+
+backend:
+  name: github
+  repo: nafeu/subzeecreations
+  branch: main
+  # Set NEXT_PUBLIC_SITE_URL in Vercel to your production URL (e.g. https://subzeecreations.vercel.app)
+  base_url: https://subzeecreations.vercel.app
+  auth_endpoint: api/decap-auth
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: site
+    label: Site Copy
+    files:
+      - name: site
+        label: Homepage & General Text
+        file: content/site.json
+        fields:
+          - label: SEO
+            name: meta
+            widget: object
+            fields:
+              - { label: Page title, name: title, widget: string }
+              - { label: Meta description, name: description, widget: text }
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Headline (before emphasis), name: headlineBefore, widget: string }
+              - { label: Headline emphasis (italic), name: headlineEmphasis, widget: string }
+              - { label: Intro paragraph, name: intro, widget: text }
+              - { label: Button text, name: cta, widget: string }
+          - label: Shop section
+            name: shop
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Headline (before emphasis), name: headlineBefore, widget: string }
+              - { label: Headline emphasis (italic), name: headlineEmphasis, widget: string }
+              - { label: Section note, name: note, widget: text }
+          - label: About section
+            name: about
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Headline (before emphasis), name: headlineBefore, widget: string }
+              - { label: Headline emphasis (italic), name: headlineEmphasis, widget: string }
+              - { label: Body paragraph, name: body, widget: text }
+              - { label: CTA link text, name: cta, widget: string }
+              - { label: Note line 1, name: noteLine1, widget: string }
+              - { label: Note line 2, name: noteLine2, widget: string }
+              - { label: Note line 3, name: noteLine3, widget: string }
+          - label: Contact section
+            name: contact
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Headline (before emphasis), name: headlineBefore, widget: string }
+              - { label: Headline emphasis (italic), name: headlineEmphasis, widget: string }
+              - { label: Intro, name: intro, widget: text }
+              - { label: Email address, name: email, widget: string }
+              - { label: Copyright line, name: copyright, widget: string }
+              - { label: Footer link text, name: footerLink, widget: string }
+          - label: Product artwork label
+            name: productArt
+            widget: object
+            fields:
+              - { label: Line 1, name: labelLine1, widget: string }
+              - { label: Line 2, name: labelLine2, widget: string }
+          - label: Product page
+            name: productPage
+            widget: object
+            fields:
+              - { label: Brand name (shown on product pages), name: brandName, widget: string }
+              - { label: Shipping label, name: shippingLabel, widget: string }
+          - label: Cart & checkout
+            name: cart
+            widget: object
+            fields:
+              - { label: Empty cart message, name: emptyMessage, widget: string }
+              - { label: Browse shop link, name: browseLink, widget: string }
+              - { label: Checkout eyebrow, name: checkoutEyebrow, widget: string }
+              - { label: Place order button, name: placeOrder, widget: string }
+              - { label: Clear cart button, name: clearCart, widget: string }
+              - { label: Shipping note, name: shippingNote, widget: string }
+              - { label: Success eyebrow prefix, name: successEyebrow, widget: string }
+              - { label: Success title, name: successTitle, widget: string }
+              - { label: Success message, name: successMessage, widget: text }
+              - { label: Success done button, name: successDone, widget: string }
+              - { label: Submitting label, name: submitting, widget: string }
+              - { label: Submit error message, name: submitError, widget: text }
+
+  - name: products
+    label: Products
+    folder: content/products
+    create: true
+    slug: "{{slug}}"
+    extension: json
+    format: json
+    identifier_field: name
+    summary: "{{name}} — ${{price}}"
+    fields:
+      - { label: Slug, name: slug, widget: string, hint: "URL-friendly id, e.g. everyday-notebook" }
+      - { label: Name, name: name, widget: string }
+      - { label: Category, name: category, widget: string }
+      - { label: Price (USD), name: price, widget: number, value_type: float, min: 0 }
+      - { label: Description, name: description, widget: text }
+      - { label: Details, name: details, widget: list, field: { label: Detail, name: detail, widget: string } }
+      - { label: Card color, name: color, widget: string, hint: "Hex color, e.g. #d7dfcf" }
+      - label: Pattern
+        name: pattern
+        widget: select
+        options: [grid, lines, dots]
+      - { label: Sort order, name: order, widget: number, value_type: int, min: 1, default: 1 }

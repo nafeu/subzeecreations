@@ -1,0 +1,11 @@
+{
+  "slug": "desk-notes",
+  "name": "Desk Notes",
+  "category": "Everyday tools",
+  "price": 12,
+  "description": "The little tear-off pad that keeps your desk, and your day, in order.",
+  "details": ["80 tear-off sheets", "A6 format", "Vegetable inks"],
+  "color": "#ded4b9",
+  "pattern": "dots",
+  "order": 3
+}

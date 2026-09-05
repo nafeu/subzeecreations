@@ -1,8 +1,93 @@
 import Link from 'next/link'
 import { ArrowDown, ArrowUpRight, Mail } from 'lucide-react'
-import { products } from '@/lib/products'
+import { getSiteContent } from '@/lib/content'
+import { getProducts } from '@/lib/get-products'
 import { CartDrawer, ProductCard, SiteHeader } from '@/components/shop/shop-ui'
 
 export default function Home() {
-  return <main id="top"><SiteHeader /><section className="hero"><div className="hero-copy"><p className="eyebrow">Small objects for considered days</p><h1>Make room<br /><em>for thought.</em></h1><p className="hero-intro">Stationery for the notes you keep, the letters you send, and the ideas that deserve a little space.</p><Link href="#shop" className="button button-dark">Explore the collection <ArrowDown size={16} /></Link></div></section><section id="shop" className="shop-section"><div className="section-heading"><div><p className="eyebrow">The collection / 01</p><h2>Useful things,<br /><em>beautifully made.</em></h2></div><p className="section-note">A small edit of paper goods designed to make the everyday feel a little more intentional.</p></div><div className="products-grid">{products.map((product) => <ProductCard key={product.slug} product={product} />)}</div></section><section id="about" className="about-section"><div className="about-number">02</div><div className="about-copy"><p className="eyebrow">A little about us</p><h2>Paper is a place<br />to <em>begin.</em></h2><p>subzeecreations is a one-person stationery studio making simple, tactile things for slower moments. Every piece is designed, packed, and sent from our little corner of the world.</p><Link href="#contact" className="text-link">Say hello <ArrowUpRight size={14} /></Link></div><div className="about-note">Thoughtful materials.<br />No unnecessary extras.<br /><span>Always shipping included.</span></div></section><section id="contact" className="contact-section"><div><p className="eyebrow">03 / Contact</p><h2>Keep in<br /><em>touch.</em></h2></div><div className="contact-details"><p>Questions, wholesale ideas, or just want to say hello?</p><a href="mailto:subzeecreations@proton.me" className="contact-link">subzeecreations@proton.me <Mail size={16} /></a><div className="contact-footer"><span>© 2024 subzeecreations</span><a href="#top">subzeecreations journal <ArrowUpRight size={14} /></a></div></div></section><CartDrawer /></main>
+  const site = getSiteContent()
+  const products = getProducts()
+
+  return (
+    <main id="top">
+      <SiteHeader />
+      <section className="hero">
+        <div className="hero-copy">
+          <p className="eyebrow">{site.hero.eyebrow}</p>
+          <h1>
+            {site.hero.headlineBefore}
+            <br />
+            <em>{site.hero.headlineEmphasis}</em>
+          </h1>
+          <p className="hero-intro">{site.hero.intro}</p>
+          <Link href="#shop" className="button button-dark">
+            {site.hero.cta} <ArrowDown size={16} />
+          </Link>
+        </div>
+      </section>
+      <section id="shop" className="shop-section">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">{site.shop.eyebrow}</p>
+            <h2>
+              {site.shop.headlineBefore}
+              <br />
+              <em>{site.shop.headlineEmphasis}</em>
+            </h2>
+          </div>
+          <p className="section-note">{site.shop.note}</p>
+        </div>
+        <div className="products-grid">
+          {products.map((product) => (
+            <ProductCard key={product.slug} product={product} productArt={site.productArt} />
+          ))}
+        </div>
+      </section>
+      <section id="about" className="about-section">
+        <div className="about-number">02</div>
+        <div className="about-copy">
+          <p className="eyebrow">{site.about.eyebrow}</p>
+          <h2>
+            {site.about.headlineBefore}
+            <br />
+            <em>{site.about.headlineEmphasis}</em>
+          </h2>
+          <p>{site.about.body}</p>
+          <Link href="#contact" className="text-link">
+            {site.about.cta} <ArrowUpRight size={14} />
+          </Link>
+        </div>
+        <div className="about-note">
+          {site.about.noteLine1}
+          <br />
+          {site.about.noteLine2}
+          <br />
+          <span>{site.about.noteLine3}</span>
+        </div>
+      </section>
+      <section id="contact" className="contact-section">
+        <div>
+          <p className="eyebrow">{site.contact.eyebrow}</p>
+          <h2>
+            {site.contact.headlineBefore}
+            <br />
+            <em>{site.contact.headlineEmphasis}</em>
+          </h2>
+        </div>
+        <div className="contact-details">
+          <p>{site.contact.intro}</p>
+          <a href={`mailto:${site.contact.email}`} className="contact-link">
+            {site.contact.email} <Mail size={16} />
+          </a>
+          <div className="contact-footer">
+            <span>{site.contact.copyright}</span>
+            <a href="#top">
+              {site.contact.footerLink} <ArrowUpRight size={14} />
+            </a>
+          </div>
+        </div>
+      </section>
+      <CartDrawer copy={site.cart} productArt={site.productArt} />
+    </main>
+  )
 }

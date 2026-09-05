@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "title": "subzeecreations — Thoughtful stationery for everyday notes",
+    "description": "Small-batch stationery for the notes you keep, the letters you send, and the ideas that deserve a little space."
+  },
+  "hero": {
+    "eyebrow": "Small objects for considered days",
+    "headlineBefore": "Make room",
+    "headlineEmphasis": "for thought.",
+    "intro": "Stationery for the notes you keep, the letters you send, and the ideas that deserve a little space.",
+    "cta": "Explore the collection"
+  },
+  "shop": {
+    "eyebrow": "The collection / 01",
+    "headlineBefore": "Useful things,",
+    "headlineEmphasis": "beautifully made.",
+    "note": "A small edit of paper goods designed to make the everyday feel a little more intentional."
+  },
+  "about": {
+    "eyebrow": "A little about us",
+    "headlineBefore": "Paper is a place",
+    "headlineEmphasis": "to begin.",
+    "body": "subzeecreations is a one-person stationery studio making simple, tactile things for slower moments. Every piece is designed, packed, and sent from our little corner of the world.",
+    "cta": "Say hello",
+    "noteLine1": "Thoughtful materials.",
+    "noteLine2": "No unnecessary extras.",
+    "noteLine3": "Always shipping included."
+  },
+  "contact": {
+    "eyebrow": "03 / Contact",
+    "headlineBefore": "Keep in",
+    "headlineEmphasis": "touch.",
+    "intro": "Questions, wholesale ideas, or just want to say hello?",
+    "email": "subzeecreations@proton.me",
+    "copyright": "© 2024 subzeecreations",
+    "footerLink": "subzeecreations journal"
+  },
+  "productArt": {
+    "labelLine1": "subzee",
+    "labelLine2": "notes"
+  },
+  "productPage": {
+    "brandName": "subzeecreations",
+    "shippingLabel": "shipping included"
+  },
+  "cart": {
+    "emptyMessage": "Your cart is waiting for something good.",
+    "browseLink": "Browse the shop",
+    "checkoutEyebrow": "Finish your order",
+    "placeOrder": "Place order",
+    "clearCart": "Clear cart",
+    "shippingNote": "Shipping included",
+    "successEyebrow": "Thank you",
+    "successTitle": "Your order is noted.",
+    "successMessage": "We'll be in touch shortly to confirm the details. Shipping is included in the price.",
+    "successDone": "Done",
+    "submitting": "Sending order…",
+    "submitError": "Something went wrong sending your order. Please try again or email us directly."
+  }
+}

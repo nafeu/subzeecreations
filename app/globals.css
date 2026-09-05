@@ -87,6 +87,7 @@ h2 { font-size: clamp(48px, 6vw, 86px); }
 .form-grid input, .add-panel input { background: transparent; border: 1px solid var(--border); padding: 13px 12px; outline: none; color: inherit; font-size: 12px; width: 100%; }
 .form-grid input:focus, .add-panel input:focus { border-color: #777970; }
 .form-grid input::placeholder, .add-panel input::placeholder { color: #999a92; }
+.form-error { color: #8b3a3a; font-size: 12px; line-height: 1.5; margin: 0 0 12px; }
 .full-width { width: 100%; }
 .clear-button { display: block; margin: 15px auto 0; }
 .empty-cart, .order-success { min-height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 10px; }

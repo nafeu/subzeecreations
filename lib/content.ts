@@ -7,7 +7,12 @@ export function getSiteContent(): SiteContent {
 }
 
 export function getSiteUrl(): string {
-  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, '')
+  const configured =
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    process.env.SITE_URL ??
+    (process.env.VERCEL_ENV === 'production' ? 'https://www.subzeecreations.com' : undefined)
+
+  if (configured) return configured.replace(/\/$/, '')
   if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`
   return 'http://localhost:3000'
 }

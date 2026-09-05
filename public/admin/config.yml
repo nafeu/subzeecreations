@@ -1,13 +1,15 @@
-# Decap CMS — edit at /admin
-# Local editing: run `npm run cms` then open http://localhost:3000/admin
-local_backend: true
+# Decap CMS — edit at https://www.subzeecreations.com/admin
+# Local editing: run `npm run cms` in one terminal and `npm run dev` in another,
+# then open http://localhost:3000/admin (uses local_backend proxy below).
+local_backend:
+  url: http://localhost:8081/api/v1
+  allowed_hosts: ['localhost:3000', '127.0.0.1:3000']
 
 backend:
   name: github
   repo: nafeu/subzeecreations
   branch: main
-  # Set NEXT_PUBLIC_SITE_URL in Vercel to your production URL (e.g. https://subzeecreations.vercel.app)
-  base_url: https://subzeecreations.vercel.app
+  base_url: https://www.subzeecreations.com
   auth_endpoint: api/decap-auth
 
 media_folder: public/uploads

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "subzeecreations — Thoughtful stationery for everyday notes",
+    "title": "Thoughtful stationery for everyday things",
     "description": "Small-batch stationery for the notes you keep, the letters you send, and the ideas that deserve a little space."
   },
   "hero": {
@@ -44,17 +44,17 @@
     "shippingLabel": "shipping included"
   },
   "cart": {
-    "emptyMessage": "Your cart is waiting for something good.",
-    "browseLink": "Browse the shop",
-    "checkoutEyebrow": "Finish your order",
-    "placeOrder": "Place order",
-    "clearCart": "Clear cart",
     "shippingNote": "Shipping included",
-    "successEyebrow": "Thank you",
-    "successTitle": "Your order is noted.",
+    "checkoutEyebrow": "Finish your order",
+    "browseLink": "Browse the shop",
     "successMessage": "We'll be in touch shortly to confirm the details. Shipping is included in the price.",
     "successDone": "Done",
+    "successEyebrow": "Thank you",
     "submitting": "Sending order…",
-    "submitError": "Something went wrong sending your order. Please try again or email us directly."
+    "placeOrder": "Place order",
+    "clearCart": "Clear cart",
+    "submitError": "Something went wrong sending your order. Please try again or email us directly.",
+    "successTitle": "Your order is noted.",
+    "emptyMessage": "Your cart is waiting for something good."
   }
 }

@@ -12,8 +12,10 @@
   "name": "Vinyl Animal Sticker Sheet",
   "slug": "animal-sticker-sheet",
   "order": 3,
-  "pattern": "dots",
-  "images": [],
+  "pattern": "grid",
+  "images": [
+    "/uploads/screenshot-2026-09-07-at-10.04.57 pm.png"
+  ],
   "description": "stick onto hard, smooth surfaces.",
   "category": "Kids Labels"
 }

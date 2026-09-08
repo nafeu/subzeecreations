@@ -19,6 +19,14 @@ export function ProductArtwork({
   large?: boolean
   productArt: ProductArtCopy
 }) {
+  if (product.image) {
+    return (
+      <div className={`product-art product-art-photo ${large ? 'product-art-large' : ''}`}>
+        <img src={product.image} alt={product.name} className="product-art-image" />
+      </div>
+    )
+  }
+
   return (
     <div
       className={`product-art product-art-${product.pattern} ${large ? 'product-art-large' : ''}`}

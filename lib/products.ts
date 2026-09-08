@@ -5,6 +5,7 @@ export type Product = {
   price: number
   description: string
   details: string[]
+  image?: string
   color: string
   pattern: 'grid' | 'lines' | 'dots'
   order?: number

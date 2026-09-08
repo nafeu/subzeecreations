@@ -114,7 +114,8 @@ collections:
       - { label: Price (USD), name: price, widget: number, value_type: float, min: 0 }
       - { label: Description, name: description, widget: text }
       - { label: Details, name: details, widget: list, field: { label: Detail, name: detail, widget: string } }
-      - { label: Card color, name: color, widget: string, hint: "Hex color, e.g. #d7dfcf" }
+      - { label: Product image, name: image, widget: image, required: false, hint: "Shown on shop cards, product page, and cart. Leave empty to use the color/pattern placeholder." }
+      - { label: Card color, name: color, widget: string, hint: "Hex color, e.g. #d7dfcf — used when no product image is set" }
       - label: Pattern
         name: pattern
         widget: select

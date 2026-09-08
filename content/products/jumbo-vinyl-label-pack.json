@@ -7,13 +7,11 @@
   ],
   "color": "#e7d8cc",
   "price": 28,
-  "name": "Jumbo Vinyl Label Pack",
+  "name": "Jumbo Vinyl Animal Pack",
   "slug": "jumbo-stickers",
   "order": 3,
   "pattern": "lines",
-  "images": [
-    "/uploads/screenshot-2026-09-08-at-10.41.00 am.png"
-  ],
+  "images": [],
   "description": "stick onto hard, smooth surfaces.",
   "category": "Jumbo Labels"
 }

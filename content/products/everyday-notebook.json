@@ -13,7 +13,9 @@
   "slug": "fruit-sticker-sheet",
   "order": 1,
   "pattern": "grid",
-  "images": [],
+  "images": [
+    "/uploads/screenshot-2026-09-07-at-10.47.09 pm.png"
+  ],
   "description": "stick onto hard, smooth surfaces.",
   "category": "Kids Labels"
 }

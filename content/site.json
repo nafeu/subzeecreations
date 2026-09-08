@@ -1,17 +1,17 @@
 {
   "meta": {
     "title": "Thoughtful stationery for everyday things",
-    "description": "Small-batch stationery for the notes you keep, the letters you send, and the ideas that deserve a little space."
+    "description": "From daycare cubbies to school desks, kids have a lot of stuff and somehow, it always finds a way to get lost. Our personalized labels help keep their everyday essentials easy to identify."
   },
   "hero": {
     "eyebrow": "Small objects for considered days",
-    "headlineBefore": "Make room",
-    "headlineEmphasis": "for thought.",
-    "intro": "Stationery for the notes you keep, the letters you send, and the ideas that deserve a little space.",
-    "cta": "Explore the collection"
+    "headlineBefore": "Little labels",
+    "headlineEmphasis": "for life's big adventures.",
+    "intro": "Personalized name labels made to help keep your little one's everyday essentials organized; from daycare and school to water bottles, lunch boxes, and everything in between.",
+    "cta": "Shop Kids' Labels"
   },
   "shop": {
-    "eyebrow": "The collection / 01",
+    "eyebrow": "Labels / 01",
     "headlineBefore": "Useful things,",
     "headlineEmphasis": "beautifully made.",
     "note": "A small edit of paper goods designed to make the everyday feel a little more intentional."
@@ -20,7 +20,7 @@
     "eyebrow": "A little about us",
     "headlineBefore": "Paper is a place",
     "headlineEmphasis": "to begin.",
-    "body": "subzeecreations is a one-person stationery studio making simple, tactile things for slower moments. Every piece is designed, packed, and sent from our little corner of the world.",
+    "body": "subzeecreations is a one-person studio in Mississauga, Canada. Every piece is designed, packed, and sent from my little corner to all over the world.",
     "cta": "Say hello",
     "noteLine1": "Thoughtful materials.",
     "noteLine2": "No unnecessary extras.",
@@ -32,7 +32,7 @@
     "headlineEmphasis": "touch.",
     "intro": "Questions, wholesale ideas, or just want to say hello?",
     "email": "subzeecreations@proton.me",
-    "copyright": "© 2024 subzeecreations",
+    "copyright": "© 2023 subzeecreations",
     "footerLink": "subzeecreations journal"
   },
   "productArt": {
@@ -41,15 +41,15 @@
   },
   "productPage": {
     "brandName": "subzeecreations",
-    "shippingLabel": "shipping included"
+    "shippingLabel": "free untracked shipping included"
   },
   "cart": {
-    "shippingNote": "Shipping included",
+    "shippingNote": "Free untracked shipping included",
     "checkoutEyebrow": "Finish your order",
     "browseLink": "Browse the shop",
-    "successMessage": "We'll be in touch shortly to confirm the details. Shipping is included in the price.",
+    "successMessage": "I'll be in touch shortly to confirm the details. Untracked Free Shipping is included, message us if you want to explore tracked shipping options.",
     "successDone": "Done",
-    "successEyebrow": "Thank you",
+    "successEyebrow": "Merci!",
     "submitting": "Sending order…",
     "placeOrder": "Place order",
     "clearCart": "Clear cart",

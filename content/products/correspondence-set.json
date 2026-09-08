@@ -1,7 +1,7 @@
 {
   "details": [
-    "1 Jumbo Vinyl Label",
-    "Vinyl Sticker"
+    "Our Jumbo Vinyl Labels are easy to peel and stick onto hard, smooth surfaces. They’re waterproof, stretchy, and durable; made to withstand everyday use!",
+    "Perfect for labeling water bottles, cups, bowls, plates, lunch boxes, pencil cases, school supplies, toys, and more."
   ],
   "color": "#e7d8cc",
   "price": 4,
@@ -9,6 +9,6 @@
   "slug": "jumbo-stickers",
   "order": 2,
   "pattern": "lines",
-  "description": "Includes: 1 Jumbo Vinyl Label\nLabel Size: 50 mm × 31 mm\n\nOur Jumbo Vinyl Labels are easy to peel and stick onto hard, smooth surfaces. They’re waterproof, stretchy, and durable; made to withstand everyday use!\n\nPerfect for labeling water bottles, cups, bowls, plates, lunch boxes, pencil cases, school supplies, toys, and more.",
+  "description": "Label Size: 50 mm × 31 mm",
   "category": "Paper goods"
 }

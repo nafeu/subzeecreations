@@ -1,11 +1,19 @@
 {
-  "slug": "desk-notes",
-  "name": "Desk Notes",
-  "category": "Everyday tools",
-  "price": 12,
-  "description": "The little tear-off pad that keeps your desk, and your day, in order.",
-  "details": ["80 tear-off sheets", "A6 format", "Vegetable inks"],
+  "details": [
+    "64 labels total",
+    "32 Small – 25 mm x 10.5 mm",
+    "24 Medium – 35 mm x 16 mm",
+    "8 Large – 50 mm x 20 mm",
+    "waterproof, stretchy, and durable",
+    "Perfect for labeling water bottles, cups, bowls, plates, lunch boxes, pencil cases, small to big school supplies, toys, and more."
+  ],
   "color": "#ded4b9",
+  "price": 20,
+  "name": "Vinyl Animal Sticker Sheet",
+  "slug": "animal-sticker-sheet",
+  "order": 3,
   "pattern": "dots",
-  "order": 3
+  "images": [],
+  "description": "stick onto hard, smooth surfaces.",
+  "category": "Kids Labels"
 }

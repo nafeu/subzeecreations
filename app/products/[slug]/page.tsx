@@ -3,7 +3,7 @@ import { ArrowLeft } from 'lucide-react'
 import { getSiteContent } from '@/lib/content'
 import { getProduct, getProducts } from '@/lib/get-products'
 import { formatPrice } from '@/lib/products'
-import { AddToCart, CartDrawer, ProductArtwork, SiteHeader } from '@/components/shop/shop-ui'
+import { AddToCart, CartDrawer, ProductGallery, SiteHeader } from '@/components/shop/shop-ui'
 import { notFound } from 'next/navigation'
 
 export function generateStaticParams() {
@@ -25,7 +25,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <ArrowLeft size={15} /> Back to shop
         </Link>
         <div className="product-detail">
-          <ProductArtwork product={product} large productArt={site.productArt} />
+          <ProductGallery product={product} productArt={site.productArt} />
           <div className="product-info">
             <p className="eyebrow">
               {product.category} / {site.productPage.brandName}

@@ -10,7 +10,9 @@
   "slug": "jumbo-stickers",
   "order": 2,
   "pattern": "lines",
-  "image": "/uploads/screenshot-2026-09-07-at-9.26.07 pm.png",
+  "images": [
+    "/uploads/screenshot-2026-09-07-at-9.26.07 pm.png"
+  ],
   "description": "stick onto hard, smooth surfaces.",
   "category": "Kids Labels"
 }

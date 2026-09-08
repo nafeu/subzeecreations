@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { ArrowUpRight, Minus, Plus, ShoppingBag, X } from 'lucide-react'
 import type { SiteContent } from '@/lib/content'
-import { formatPrice, type Product } from '@/lib/products'
+import { formatPrice, getPrimaryImage, type Product } from '@/lib/products'
 import { useCart } from './cart-context'
 
 type ProductArtCopy = SiteContent['productArt']
@@ -19,10 +19,12 @@ export function ProductArtwork({
   large?: boolean
   productArt: ProductArtCopy
 }) {
-  if (product.image) {
+  const image = getPrimaryImage(product)
+
+  if (image) {
     return (
       <div className={`product-art product-art-photo ${large ? 'product-art-large' : ''}`}>
-        <img src={product.image} alt={product.name} className="product-art-image" />
+        <img src={image} alt={product.name} className="product-art-image" />
       </div>
     )
   }
@@ -40,6 +42,52 @@ export function ProductArtwork({
         {productArt.labelLine2}
       </div>
       <span>{product.category}</span>
+    </div>
+  )
+}
+
+export function ProductGallery({
+  product,
+  productArt,
+}: {
+  product: Product
+  productArt: ProductArtCopy
+}) {
+  const images = product.images ?? []
+  const [active, setActive] = useState(0)
+
+  if (images.length === 0) {
+    return <ProductArtwork product={product} large productArt={productArt} />
+  }
+
+  const activeImage = images[active] ?? images[0]
+
+  return (
+    <div className="product-gallery">
+      <div className="product-art product-art-photo product-art-large">
+        <img
+          src={activeImage}
+          alt={images.length > 1 ? `${product.name} — image ${active + 1} of ${images.length}` : product.name}
+          className="product-art-image"
+        />
+      </div>
+      {images.length > 1 && (
+        <div className="product-gallery-thumbs" role="tablist" aria-label={`${product.name} images`}>
+          {images.map((src, index) => (
+            <button
+              key={`${src}-${index}`}
+              type="button"
+              role="tab"
+              aria-selected={index === active}
+              className={`product-gallery-thumb ${index === active ? 'is-active' : ''}`}
+              onClick={() => setActive(index)}
+              aria-label={`View image ${index + 1}`}
+            >
+              <img src={src} alt="" />
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

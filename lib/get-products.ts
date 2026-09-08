@@ -5,12 +5,27 @@ import type { Product } from '@/lib/products'
 
 const productsDir = path.join(process.cwd(), 'content/products')
 
-function normalizeProduct(raw: Product & { details?: Array<string | { detail?: string }> }): Product {
+function normalizeImages(raw: { image?: string; images?: Array<string | { image?: string }> }): string[] {
+  if (raw.images?.length) {
+    return raw.images
+      .map((entry) => (typeof entry === 'string' ? entry : (entry.image ?? '')))
+      .filter(Boolean)
+  }
+
+  if (raw.image) return [raw.image]
+
+  return []
+}
+
+function normalizeProduct(raw: Product & { image?: string; details?: Array<string | { detail?: string }> }): Product {
   const details = (raw.details ?? [])
     .map((detail) => (typeof detail === 'string' ? detail : (detail.detail ?? '')))
     .filter(Boolean)
 
-  return { ...raw, details }
+  const { image: _image, images: _images, ...rest } = raw
+  const images = normalizeImages(raw)
+
+  return { ...rest, details, ...(images.length ? { images } : {}) }
 }
 
 export function getProducts(): Product[] {

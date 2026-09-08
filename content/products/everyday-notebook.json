@@ -9,7 +9,7 @@
   ],
   "color": "#d7dfcf",
   "price": 20,
-  "name": "Vinyl Fruit Sticker Sheet",
+  "name": "Fruit Sticker Sheet Labels",
   "slug": "fruit-sticker-sheet",
   "order": 1,
   "pattern": "grid",
@@ -18,5 +18,5 @@
     "/uploads/screenshot-2026-09-08-at-9.42.00 am.png"
   ],
   "description": "stick onto hard, smooth surfaces.",
-  "category": "Sticker Sheets"
+  "category": "Vinyl Sticker Sheets"
 }

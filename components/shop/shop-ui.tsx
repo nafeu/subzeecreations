@@ -113,6 +113,7 @@ export function CartDrawer({ copy, productArt }: { copy: CartCopy; productArt: P
             quantity: item.quantity,
             price: item.price,
             personalization: item.personalization || undefined,
+            customRequest: item.customRequest || undefined,
           })),
           subtotal,
         }),
@@ -186,11 +187,12 @@ export function CartDrawer({ copy, productArt }: { copy: CartCopy; productArt: P
                   <>
                     <div className="cart-items">
                       {items.map((item) => (
-                        <div className="cart-item" key={`${item.slug}-${item.personalization}`}>
+                        <div className="cart-item" key={`${item.slug}-${item.personalization}-${item.customRequest}`}>
                           <ProductArtwork product={item} productArt={productArt} />
                           <div>
                             <h3>{item.name}</h3>
                             {item.personalization && <p className="item-note">For: {item.personalization}</p>}
+                            {item.customRequest && <p className="item-note">Request: {item.customRequest}</p>}
                             <p>
                               {item.quantity} × {formatPrice(item.price)}
                             </p>
@@ -256,19 +258,35 @@ export function AddToCart({ product }: { product: Product }) {
   const { addItem } = useCart()
   const [quantity, setQuantity] = useState(1)
   const [name, setName] = useState('')
+  const [customRequest, setCustomRequest] = useState('')
   const [added, setAdded] = useState(false)
 
   return (
     <div className="add-panel">
-      <label className="field-label" htmlFor="name">
-        Personalise it for <span>optional</span>
-      </label>
-      <input
-        id="name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Add a name or leave blank"
-      />
+      <div className="add-fields">
+        <div>
+          <label className="field-label" htmlFor="name">
+            Personalise it for <span>optional</span>
+          </label>
+          <input
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Add a name or leave blank"
+          />
+        </div>
+        <div>
+          <label className="field-label" htmlFor="custom-request">
+            Custom request <span>optional</span>
+          </label>
+          <input
+            id="custom-request"
+            value={customRequest}
+            onChange={(e) => setCustomRequest(e.target.value)}
+            placeholder="Any special instructions or requests"
+          />
+        </div>
+      </div>
       <div className="add-row">
         <div className="quantity">
           <button onClick={() => setQuantity(Math.max(1, quantity - 1))} aria-label="Decrease quantity">
@@ -282,7 +300,7 @@ export function AddToCart({ product }: { product: Product }) {
         <button
           className="button button-dark"
           onClick={() => {
-            addItem(product, quantity, name)
+            addItem(product, quantity, name, customRequest)
             setAdded(true)
           }}
         >

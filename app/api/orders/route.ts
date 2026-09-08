@@ -8,6 +8,7 @@ type OrderItem = {
   quantity: number
   price: number
   personalization?: string
+  customRequest?: string
 }
 
 type OrderPayload = {
@@ -50,7 +51,8 @@ function buildOrderEmail(payload: OrderPayload) {
   const itemLines = items
     .map((item) => {
       const personalization = item.personalization ? `\n  Personalization: ${item.personalization}` : ''
-      return `- ${item.name} (${item.slug})\n  Qty: ${item.quantity} × ${formatPrice(item.price)}${personalization}`
+      const customRequest = item.customRequest ? `\n  Custom request: ${item.customRequest}` : ''
+      return `- ${item.name} (${item.slug})\n  Qty: ${item.quantity} × ${formatPrice(item.price)}${personalization}${customRequest}`
     })
     .join('\n\n')
 
@@ -89,6 +91,7 @@ function buildOrderEmail(payload: OrderPayload) {
           <strong>${item.name}</strong> (${item.slug})<br />
           Qty: ${item.quantity} × ${formatPrice(item.price)}
           ${item.personalization ? `<br />Personalization: ${item.personalization}` : ''}
+          ${item.customRequest ? `<br />Custom request: ${item.customRequest}` : ''}
         </li>`,
         )
         .join('')}

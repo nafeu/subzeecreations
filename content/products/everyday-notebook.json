@@ -1,11 +1,15 @@
 {
-  "slug": "everyday-notebook",
-  "name": "Everyday Notebook",
-  "category": "Notebooks",
-  "price": 24,
-  "description": "A quiet place for loud ideas, small lists, and everything in between.",
-  "details": ["A5 softcover", "160 dotted pages", "FSC-certified paper"],
+  "details": [
+    "A5 softcover",
+    "160 dotted pages",
+    "FSC-certified paper"
+  ],
   "color": "#d7dfcf",
+  "price": 20,
+  "name": "Vinyl Fruit Sticker Sheet",
+  "slug": "fruit-sticker-sheet",
+  "order": 1,
   "pattern": "grid",
-  "order": 1
+  "description": "stick onto hard, smooth surfaces.",
+  "category": "Kids Labels"
 }

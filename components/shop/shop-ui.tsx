@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { ArrowUpRight, Minus, Plus, ShoppingBag, X } from 'lucide-react'
+import { ArrowUpRight, ChevronLeft, ChevronRight, ShoppingBag, X } from 'lucide-react'
 import type { SiteContent } from '@/lib/content'
 import { formatPrice, getPrimaryImage, type Product } from '@/lib/products'
 import { useCart } from './cart-context'
@@ -43,6 +43,94 @@ export function ProductArtwork({
       </div>
       <span>{product.category}</span>
     </div>
+  )
+}
+
+export function ProductGalleryCarousel({ images, productName }: { images: string[]; productName: string }) {
+  const [active, setActive] = useState(0)
+  const total = images.length
+
+  const goTo = (index: number) => {
+    setActive((index + total) % total)
+  }
+
+  return (
+    <section className="gallery-carousel-section" aria-label={`${productName} gallery`}>
+      <div className="gallery-carousel-heading">
+        <p className="eyebrow">Gallery</p>
+        <h2>
+          A closer <em>look</em>
+        </h2>
+      </div>
+      <div className="gallery-carousel">
+        <button
+          type="button"
+          className="gallery-carousel-nav gallery-carousel-nav-prev"
+          onClick={() => goTo(active - 1)}
+          aria-label="Previous image"
+        >
+          <ChevronLeft size={20} />
+        </button>
+        <div className="gallery-carousel-viewport">
+          <img
+            src={images[active]}
+            alt={`${productName} — gallery image ${active + 1} of ${total}`}
+            className="gallery-carousel-image"
+          />
+        </div>
+        <button
+          type="button"
+          className="gallery-carousel-nav gallery-carousel-nav-next"
+          onClick={() => goTo(active + 1)}
+          aria-label="Next image"
+        >
+          <ChevronRight size={20} />
+        </button>
+      </div>
+      {total > 1 && (
+        <div className="gallery-carousel-dots" role="tablist" aria-label={`${productName} gallery images`}>
+          {images.map((src, index) => (
+            <button
+              key={`${src}-${index}`}
+              type="button"
+              role="tab"
+              aria-selected={index === active}
+              aria-label={`View gallery image ${index + 1}`}
+              className={`gallery-carousel-dot ${index === active ? 'is-active' : ''}`}
+              onClick={() => setActive(index)}
+            />
+          ))}
+        </div>
+      )}
+    </section>
+  )
+}
+
+export function RelatedProducts({
+  products,
+  productArt,
+}: {
+  products: Product[]
+  productArt: ProductArtCopy
+}) {
+  if (products.length === 0) return null
+
+  return (
+    <section className="related-products-section">
+      <div className="section-heading">
+        <div>
+          <p className="eyebrow">More to explore</p>
+          <h2>
+            You may also <em>like...</em>
+          </h2>
+        </div>
+      </div>
+      <div className="products-grid">
+        {products.map((product) => (
+          <ProductCard key={product.slug} product={product} productArt={productArt} />
+        ))}
+      </div>
+    </section>
   )
 }
 
@@ -160,8 +248,8 @@ export function CartDrawer({ copy, productArt }: { copy: CartCopy; productArt: P
             slug: item.slug,
             quantity: item.quantity,
             price: item.price,
-            personalization: item.personalization || undefined,
-            customRequest: item.customRequest || undefined,
+            personalization: item.personalization,
+            customRequest: item.customRequest,
           })),
           subtotal,
         }),
@@ -299,62 +387,5 @@ export function CartDrawer({ copy, productArt }: { copy: CartCopy; productArt: P
         </div>
       )}
     </>
-  )
-}
-
-export function AddToCart({ product }: { product: Product }) {
-  const { addItem } = useCart()
-  const [quantity, setQuantity] = useState(1)
-  const [name, setName] = useState('')
-  const [customRequest, setCustomRequest] = useState('')
-  const [added, setAdded] = useState(false)
-
-  return (
-    <div className="add-panel">
-      <div className="add-fields">
-        <div>
-          <label className="field-label" htmlFor="name">
-            Personalise it for <span>optional</span>
-          </label>
-          <input
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Add a name or leave blank"
-          />
-        </div>
-        <div>
-          <label className="field-label" htmlFor="custom-request">
-            Custom request <span>optional</span>
-          </label>
-          <input
-            id="custom-request"
-            value={customRequest}
-            onChange={(e) => setCustomRequest(e.target.value)}
-            placeholder="Any special instructions or requests"
-          />
-        </div>
-      </div>
-      <div className="add-row">
-        <div className="quantity">
-          <button onClick={() => setQuantity(Math.max(1, quantity - 1))} aria-label="Decrease quantity">
-            <Minus size={14} />
-          </button>
-          <span>{quantity}</span>
-          <button onClick={() => setQuantity(Math.min(9, quantity + 1))} aria-label="Increase quantity">
-            <Plus size={14} />
-          </button>
-        </div>
-        <button
-          className="button button-dark"
-          onClick={() => {
-            addItem(product, quantity, name, customRequest)
-            setAdded(true)
-          }}
-        >
-          {added ? 'Added to cart' : 'Add to cart'} <ArrowUpRight size={16} />
-        </button>
-      </div>
-    </div>
   )
 }

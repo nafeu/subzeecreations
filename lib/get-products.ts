@@ -17,15 +17,27 @@ function normalizeImages(raw: { image?: string; images?: Array<string | { image?
   return []
 }
 
-function normalizeProduct(raw: Product & { image?: string; details?: Array<string | { detail?: string }> }): Product {
+function normalizeProduct(
+  raw: Product & {
+    image?: string
+    details?: Array<string | { detail?: string }>
+    galleryImages?: Array<string | { image?: string }>
+  },
+): Product {
   const details = (raw.details ?? [])
     .map((detail) => (typeof detail === 'string' ? detail : (detail.detail ?? '')))
     .filter(Boolean)
 
-  const { image: _image, images: _images, ...rest } = raw
+  const { image: _image, images: _images, galleryImages: _galleryImages, ...rest } = raw
   const images = normalizeImages(raw)
+  const galleryImages = normalizeImages({ images: raw.galleryImages })
 
-  return { ...rest, details, ...(images.length ? { images } : {}) }
+  return {
+    ...rest,
+    details,
+    ...(images.length ? { images } : {}),
+    ...(galleryImages.length ? { galleryImages } : {}),
+  }
 }
 
 export function getProducts(): Product[] {
@@ -40,4 +52,8 @@ export function getProducts(): Product[] {
 
 export function getProduct(slug: string) {
   return getProducts().find((product) => product.slug === slug)
+}
+
+export function getProductsInCategory(category: string, excludeSlug?: string) {
+  return getProducts().filter((product) => product.category === category && product.slug !== excludeSlug)
 }

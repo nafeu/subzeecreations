@@ -6,6 +6,7 @@ export type Product = {
   description: string
   details: string[]
   images?: string[]
+  galleryImages?: string[]
   color: string
   pattern: 'grid' | 'lines' | 'dots'
   order?: number

@@ -1,9 +1,16 @@
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { getSiteContent } from '@/lib/content'
-import { getProduct, getProducts } from '@/lib/get-products'
+import { getProduct, getProducts, getProductsInCategory } from '@/lib/get-products'
 import { formatPrice } from '@/lib/products'
-import { AddToCart, CartDrawer, ProductGallery, SiteHeader } from '@/components/shop/shop-ui'
+import { AddToCart } from '@/components/shop/add-to-cart'
+import {
+  CartDrawer,
+  ProductGallery,
+  ProductGalleryCarousel,
+  RelatedProducts,
+  SiteHeader,
+} from '@/components/shop/shop-ui'
 import { notFound } from 'next/navigation'
 
 export function generateStaticParams() {
@@ -16,6 +23,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const site = getSiteContent()
 
   if (!product) notFound()
+
+  const galleryImages = product.galleryImages ?? []
+  const relatedProducts = getProductsInCategory(product.category, product.slug)
 
   return (
     <main>
@@ -43,7 +53,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <AddToCart product={product} />
           </div>
         </div>
+        {galleryImages.length > 0 && (
+          <ProductGalleryCarousel images={galleryImages} productName={product.name} />
+        )}
       </div>
+      <RelatedProducts products={relatedProducts} productArt={site.productArt} />
       <CartDrawer copy={site.cart} productArt={site.productArt} />
     </main>
   )

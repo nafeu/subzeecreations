@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { ArrowDown, ArrowUpRight, Mail } from 'lucide-react'
 import { getSiteContent } from '@/lib/content'
 import { getProducts } from '@/lib/get-products'
+import { ScrollToLink } from '@/components/shop/scroll-to-link'
 import { CartDrawer, ProductCard, SiteHeader } from '@/components/shop/shop-ui'
 
 export default function Home() {
@@ -20,13 +21,13 @@ export default function Home() {
             <em>{site.hero.headlineEmphasis}</em>
           </h1>
           <p className="hero-intro">{site.hero.intro}</p>
-          <Link href="#shop" className="button button-dark">
+          <ScrollToLink href="#shop" scrollTarget="shop-heading" className="button button-dark">
             {site.hero.cta} <ArrowDown size={16} />
-          </Link>
+          </ScrollToLink>
         </div>
       </section>
       <section id="shop" className="shop-section">
-        <div className="section-heading">
+        <div id="shop-heading" className="section-heading">
           <div>
             <p className="eyebrow">{site.shop.eyebrow}</p>
             <h2>

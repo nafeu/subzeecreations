@@ -116,6 +116,8 @@ h2 { font-size: clamp(48px, 6vw, 86px); }
 .detail-list { border-top: 1px solid var(--border); padding: 16px 0; margin: 0 0 28px; list-style: none; color: #777970; font-size: 12px; display: flex; flex-direction: column; gap: 10px; }
 .detail-list li::before { content: '—'; margin-right: 10px; color: #20221d; }
 .add-panel { border-top: 1px solid var(--border); padding-top: 20px; }
+@keyframes onAutoFillStart { from {} to {} }
+.add-panel input:-webkit-autofill { animation-name: onAutoFillStart; animation-duration: 0.001s; }
 .add-fields { display: flex; flex-direction: column; gap: 14px; }
 .field-label { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 9px; }
 .field-label span { color: #777970; }
@@ -124,4 +126,16 @@ h2 { font-size: clamp(48px, 6vw, 86px); }
 .quantity { display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--border); min-width: 112px; }
 .quantity button { border: 0; background: transparent; padding: 0 11px; color: #777970; }
 .quantity span { font-size: 13px; }
-@media (max-width: 700px) { .site-header { padding: 12px 20px; } .site-header nav { gap: 14px; } .cart-link { font-size: 0; } .cart-link svg { width: 19px; } .hero { min-height: 640px; padding: 90px 26px; display: block; } .shop-section, .about-section, .contact-section { padding: 76px 26px; } .section-heading { display: block; margin-bottom: 40px; } .section-note { margin-top: 25px; } .products-grid { grid-template-columns: 1fr; gap: 20px; } .about-section, .contact-section { display: block; } .about-number { font-size: 90px; margin-bottom: 35px; } .about-note { margin-top: 70px; } .contact-details { min-height: 300px; margin-top: 50px; } .product-page { padding: 34px 20px 80px; } .product-detail { display: flex; flex-direction: column; align-items: stretch; gap: 48px; margin-top: 35px; } .cart-drawer { padding: 28px 20px; } }
+.gallery-carousel-section { margin-top: 90px; padding-top: 60px; border-top: 1px solid var(--border); }
+.gallery-carousel-heading { margin-bottom: 36px; }
+.gallery-carousel-heading h2 { font-family: var(--font-jost), 'Jost', serif; font-size: clamp(32px, 4vw, 48px); font-weight: 400; letter-spacing: -.035em; line-height: 1; margin: 0; }
+.gallery-carousel { display: flex; align-items: center; gap: 16px; }
+.gallery-carousel-viewport { flex: 1; aspect-ratio: 16 / 10; overflow: hidden; background: #eeece6; border: 1px solid var(--border); min-width: 0; }
+.gallery-carousel-image { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gallery-carousel-nav { border: 1px solid var(--border); background: #f5f3ee; width: 44px; height: 44px; display: grid; place-items: center; color: #20221d; transition: border-color .2s, transform .2s; flex-shrink: 0; }
+.gallery-carousel-nav:hover { border-color: #777970; transform: translateY(-1px); }
+.gallery-carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
+.gallery-carousel-dot { width: 8px; height: 8px; border-radius: 50%; border: 0; padding: 0; background: #d9d7ce; transition: background .2s, transform .2s; }
+.gallery-carousel-dot.is-active { background: #20221d; transform: scale(1.15); }
+.related-products-section { padding: 110px 10vw; border-top: 1px solid var(--border); }
+@media (max-width: 700px) { .site-header { padding: 12px 20px; } .site-header nav { gap: 14px; } .cart-link { font-size: 0; } .cart-link svg { width: 19px; } .hero { min-height: 640px; padding: 90px 26px; display: block; } .shop-section, .about-section, .contact-section { padding: 76px 26px; } .section-heading { display: block; margin-bottom: 40px; } .section-note { margin-top: 25px; } .products-grid { grid-template-columns: 1fr; gap: 20px; } .about-section, .contact-section { display: block; } .about-number { font-size: 90px; margin-bottom: 35px; } .about-note { margin-top: 70px; } .contact-details { min-height: 300px; margin-top: 50px; } .product-page { padding: 34px 20px 80px; } .product-detail { display: flex; flex-direction: column; align-items: stretch; gap: 48px; margin-top: 35px; } .gallery-carousel-section { margin-top: 60px; padding-top: 40px; } .gallery-carousel { position: relative; display: block; } .gallery-carousel-nav { position: absolute; top: 50%; z-index: 1; background: rgba(245, 243, 238, 0.92); } .gallery-carousel-nav-prev { left: 10px; transform: translateY(-50%); } .gallery-carousel-nav-next { right: 10px; transform: translateY(-50%); } .gallery-carousel-nav:hover { transform: translateY(calc(-50% - 1px)); } .related-products-section { padding: 76px 26px; } .cart-drawer { padding: 28px 20px; } }

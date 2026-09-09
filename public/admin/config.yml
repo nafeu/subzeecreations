@@ -118,7 +118,13 @@ collections:
         name: images
         widget: list
         required: false
-        hint: "First image is used on shop cards and cart. Add multiple to show a gallery on the product page."
+        hint: "First image is used on shop cards and cart. Add multiple to show the main gallery at the top of the product page."
+        field: { label: Image, name: image, widget: image }
+      - label: Gallery carousel images
+        name: galleryImages
+        widget: list
+        required: false
+        hint: "Optional extra images shown in a carousel below the product details. Only appears when at least one image is added."
         field: { label: Image, name: image, widget: image }
       - { label: Card color, name: color, widget: string, hint: "Hex color, e.g. #d7dfcf — used when no product image is set" }
       - label: Pattern

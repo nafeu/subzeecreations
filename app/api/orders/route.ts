@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
+import { getOrderEmailConfig } from '@/lib/order-email'
 import { formatPrice } from '@/lib/products'
+import { isValidEmail, isValidPhone } from '@/lib/validation'
 
 type OrderItem = {
   name: string
@@ -42,6 +44,8 @@ function isValidPayload(payload: unknown): payload is OrderPayload {
 
   const fields = [customer.name, customer.email, customer.phone, customer.address]
   if (!fields.every((field) => typeof field === 'string' && field.trim().length > 0)) return false
+  if (!isValidEmail(customer.email)) return false
+  if (!isValidPhone(customer.phone)) return false
 
   return items.every(
     (item) =>
@@ -220,9 +224,7 @@ function buildCustomerConfirmationEmail(payload: OrderPayload) {
 }
 
 export async function POST(request: NextRequest) {
-  const apiKey = process.env.RESEND_API_KEY
-  const toEmail = process.env.ORDER_TO_EMAIL ?? 'subzeecreations@proton.me'
-  const fromEmail = process.env.ORDER_FROM_EMAIL ?? 'onboarding@resend.dev'
+  const { apiKey, from: fromEmail, toEmail } = getOrderEmailConfig()
 
   if (!apiKey) {
     return NextResponse.json({ error: 'Email service is not configured.' }, { status: 503 })
@@ -245,7 +247,7 @@ export async function POST(request: NextRequest) {
 
   const shopResult = await resend.emails.send({
     from: fromEmail,
-    to: toEmail,
+    to: [toEmail],
     replyTo: payload.customer.email,
     subject: `New order from ${payload.customer.name}`,
     text: shopEmail.text,
@@ -259,7 +261,7 @@ export async function POST(request: NextRequest) {
 
   const customerResult = await resend.emails.send({
     from: fromEmail,
-    to: payload.customer.email,
+    to: [payload.customer.email],
     replyTo: toEmail,
     subject: 'Your order has been received!',
     text: customerEmail.text,

@@ -1,10 +1,18 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { ArrowUpRight, ChevronLeft, ChevronRight, ShoppingBag, X } from 'lucide-react'
 import type { SiteContent } from '@/lib/content'
-import { formatPrice, formatProductCategories, getPrimaryImage, type Product } from '@/lib/products'
+import {
+  formatPrice,
+  formatProductCategories,
+  getAllCategories,
+  getPrimaryImage,
+  productHasCategory,
+  type Product,
+} from '@/lib/products'
+import { isValidEmail, isValidPhone } from '@/lib/validation'
 import { useCart } from './cart-context'
 
 type ProductArtCopy = SiteContent['productArt']
@@ -224,6 +232,56 @@ export function ProductCard({
   )
 }
 
+export function ShopProducts({
+  products,
+  productArt,
+}: {
+  products: Product[]
+  productArt: ProductArtCopy
+}) {
+  const categories = useMemo(() => getAllCategories(products), [products])
+  const [activeCategory, setActiveCategory] = useState<string | null>(null)
+
+  const visibleProducts = activeCategory
+    ? products.filter((product) => productHasCategory(product, activeCategory))
+    : products
+
+  return (
+    <>
+      {categories.length > 1 && (
+        <div className="category-filters" role="tablist" aria-label="Filter products by category">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeCategory === null}
+            className={`category-filter ${activeCategory === null ? 'is-active' : ''}`}
+            onClick={() => setActiveCategory(null)}
+          >
+            All
+          </button>
+          {categories.map((category) => (
+            <button
+              key={category}
+              type="button"
+              role="tab"
+              aria-selected={activeCategory === category}
+              className={`category-filter ${activeCategory === category ? 'is-active' : ''}`}
+              onClick={() => setActiveCategory(category)}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      )}
+      <div className="products-grid">
+        {visibleProducts.map((product) => (
+          <ProductCard key={product.slug} product={product} productArt={productArt} />
+        ))}
+      </div>
+    </>
+  )
+}
+
 export function CartDrawer({ copy, productArt }: { copy: CartCopy; productArt: ProductArtCopy }) {
   const { items, count, subtotal, removeItem, clearCart } = useCart()
   const [open, setOpen] = useState(false)
@@ -231,11 +289,24 @@ export function CartDrawer({ copy, productArt }: { copy: CartCopy; productArt: P
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState('')
   const [form, setForm] = useState({ name: '', email: '', phone: '', address: '' })
-  const canOrder = Object.values(form).every(Boolean) && items.length > 0 && !submitting
+  const [phoneTouched, setPhoneTouched] = useState(false)
+  const phoneInvalid = form.phone.trim().length > 0 && !isValidPhone(form.phone)
+  const emailInvalid = form.email.trim().length > 0 && !isValidEmail(form.email)
+  const isCheckoutValid =
+    form.name.trim().length > 0 &&
+    isValidEmail(form.email) &&
+    isValidPhone(form.phone) &&
+    form.address.trim().length > 0 &&
+    items.length > 0
+  const canOrder = isCheckoutValid && !submitting
 
   const submitOrder = async () => {
-    setSubmitting(true)
+    setPhoneTouched(true)
     setSubmitError('')
+
+    if (!isCheckoutValid) return
+
+    setSubmitting(true)
 
     try {
       const response = await fetch('/api/orders', {
@@ -367,6 +438,8 @@ export function CartDrawer({ copy, productArt }: { copy: CartCopy; productArt: P
                           placeholder="Phone number"
                           value={form.phone}
                           onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                          onBlur={() => setPhoneTouched(true)}
+                          aria-invalid={phoneInvalid}
                         />
                         <input
                           placeholder="Shipping address"
@@ -374,6 +447,10 @@ export function CartDrawer({ copy, productArt }: { copy: CartCopy; productArt: P
                           onChange={(e) => setForm({ ...form, address: e.target.value })}
                         />
                       </div>
+                      {emailInvalid && <p className="form-error">Please enter a valid email address.</p>}
+                      {(phoneTouched || submitError) && phoneInvalid && (
+                        <p className="form-error">Please enter a valid phone number (at least 10 digits).</p>
+                      )}
                       {submitError && <p className="form-error">{submitError}</p>}
                       <button className="button button-dark full-width" disabled={!canOrder} onClick={submitOrder}>
                         {submitting ? copy.submitting : copy.placeOrder} {!submitting && <ArrowUpRight size={16} />}

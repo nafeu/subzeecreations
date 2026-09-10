@@ -1,7 +1,7 @@
 import 'server-only'
 import fs from 'fs'
 import path from 'path'
-import type { Product } from '@/lib/products'
+import { productHasCategory, type Product } from '@/lib/products'
 
 const productsDir = path.join(process.cwd(), 'content/products')
 
@@ -17,17 +17,27 @@ function normalizeImages(raw: { image?: string; images?: Array<string | { image?
   return []
 }
 
+function dedupeCategories(categories: string[]) {
+  const seen = new Map<string, string>()
+
+  for (const category of categories) {
+    const key = category.toLowerCase()
+    if (!seen.has(key)) seen.set(key, category)
+  }
+
+  return Array.from(seen.values())
+}
+
 function normalizeCategories(raw: {
   category?: string
   categories?: Array<string | { category?: string }>
 }): string[] {
-  if (raw.categories?.length) {
-    return raw.categories
-      .map((entry) => (typeof entry === 'string' ? entry : (entry.category ?? '')))
-      .map((category) => category.trim())
-      .filter(Boolean)
-  }
+  const fromList = (raw.categories ?? [])
+    .map((entry) => (typeof entry === 'string' ? entry : (entry.category ?? '')))
+    .map((category) => category.trim())
+    .filter(Boolean)
 
+  if (fromList.length) return dedupeCategories(fromList)
   if (raw.category?.trim()) return [raw.category.trim()]
 
   return []
@@ -84,6 +94,6 @@ export function getRelatedProducts(product: Pick<Product, 'slug' | 'categories'>
   return getProducts().filter(
     (candidate) =>
       candidate.slug !== product.slug &&
-      candidate.categories.some((category) => product.categories.includes(category)),
+      candidate.categories.some((category) => productHasCategory(product, category)),
   )
 }

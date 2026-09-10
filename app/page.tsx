@@ -3,7 +3,7 @@ import { ArrowDown, ArrowUpRight, Mail } from 'lucide-react'
 import { getSiteContent } from '@/lib/content'
 import { getProducts } from '@/lib/get-products'
 import { ScrollToLink } from '@/components/shop/scroll-to-link'
-import { CartDrawer, ProductCard, SiteHeader } from '@/components/shop/shop-ui'
+import { CartDrawer, ShopProducts, SiteHeader } from '@/components/shop/shop-ui'
 
 export default function Home() {
   const site = getSiteContent()
@@ -38,11 +38,7 @@ export default function Home() {
           </div>
           <p className="section-note">{site.shop.note}</p>
         </div>
-        <div className="products-grid">
-          {products.map((product) => (
-            <ProductCard key={product.slug} product={product} productArt={site.productArt} />
-          ))}
-        </div>
+        <ShopProducts products={products} productArt={site.productArt} />
       </section>
       <section id="about" className="about-section">
         <div className="about-number">02</div>

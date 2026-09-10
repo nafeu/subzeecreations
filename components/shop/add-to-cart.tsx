@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useId, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useRef, useState, type FormEvent } from 'react'
 import { ArrowUpRight, Minus, Plus } from 'lucide-react'
 import type { Product } from '@/lib/products'
 import { useCart } from './cart-context'
@@ -50,8 +50,40 @@ export function AddToCart({ product }: { product: Product }) {
 
   const canAdd = personalization.length > 0
 
+  useEffect(() => {
+    if (!added) return
+    const timer = window.setTimeout(() => setAdded(false), 2000)
+    return () => window.clearTimeout(timer)
+  }, [added])
+
+  const resetFields = () => {
+    setPersonalization('')
+    setCustomRequest('')
+    setQuantity(1)
+    setShowValidation(false)
+    if (personalizationRef.current) {
+      personalizationRef.current.value = ''
+    }
+  }
+
+  const handleAdd = (event: FormEvent) => {
+    event.preventDefault()
+
+    const trimmedName = syncPersonalization()
+    const trimmedRequest = customRequest.trim()
+
+    if (!trimmedName) {
+      setShowValidation(true)
+      return
+    }
+
+    addItem(product, quantity, trimmedName, trimmedRequest)
+    resetFields()
+    setAdded(true)
+  }
+
   return (
-    <div className="add-panel">
+    <form className="add-panel" onSubmit={handleAdd}>
       <div className="add-fields">
         <div>
           <label className="field-label" htmlFor={personalizationId}>
@@ -108,26 +140,10 @@ export function AddToCart({ product }: { product: Product }) {
             <Plus size={14} />
           </button>
         </div>
-        <button
-          type="button"
-          className="button button-dark"
-          disabled={!canAdd}
-          onClick={() => {
-            const trimmedName = syncPersonalization()
-            const trimmedRequest = customRequest.trim()
-
-            if (!trimmedName) {
-              setShowValidation(true)
-              return
-            }
-
-            addItem(product, quantity, trimmedName, trimmedRequest)
-            setAdded(true)
-          }}
-        >
+        <button type="submit" className="button button-dark" disabled={!canAdd}>
           {added ? 'Added to cart' : 'Add to cart'} <ArrowUpRight size={16} />
         </button>
       </div>
-    </div>
+    </form>
   )
 }

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { ArrowUpRight, ChevronLeft, ChevronRight, ShoppingBag, X } from 'lucide-react'
 import type { SiteContent } from '@/lib/content'
-import { formatPrice, getPrimaryImage, type Product } from '@/lib/products'
+import { formatPrice, formatProductCategories, getPrimaryImage, type Product } from '@/lib/products'
 import { useCart } from './cart-context'
 
 type ProductArtCopy = SiteContent['productArt']
@@ -41,7 +41,7 @@ export function ProductArtwork({
         <br />
         {productArt.labelLine2}
       </div>
-      <span>{product.category}</span>
+      <span>{formatProductCategories(product.categories)}</span>
     </div>
   )
 }
@@ -212,7 +212,7 @@ export function ProductCard({
       <ProductArtwork product={product} productArt={productArt} />
       <div className="product-card-copy">
         <div>
-          <p className="eyebrow">{product.category}</p>
+          <p className="eyebrow">{formatProductCategories(product.categories)}</p>
           <h3>{product.name}</h3>
         </div>
         <div className="product-price">

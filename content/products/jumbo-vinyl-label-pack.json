@@ -1,7 +1,7 @@
 {
   "details": [
     "8 Jumbo Labels Total",
-    "Label Size: 3in × 2in",
+    "Label Size: 3in \u00d7 2in",
     "waterproof, stretchy, and durable",
     "*mix and match designs and names "
   ],
@@ -12,8 +12,10 @@
   "order": 3,
   "pattern": "lines",
   "images": [
-    "/uploads/screenshot-2026-09-08-at-10.43.57 am.png"
+    "/uploads/screenshot-2026-09-08-at-10.43.57\u202fam.png"
   ],
   "description": "Jumbo vinyl labels peel and stick onto hard, smooth surfaces. Waterproof, stretchy, and durable, they're made to keep up with everyday life. Perfect for big items like water bottles, cups, bowls, lunch boxes, pencil cases, school supplies, toys, and more!",
-  "category": "Jumbo Labels"
+  "categories": [
+    "Jumbo Labels"
+  ]
 }

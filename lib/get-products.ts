@@ -17,8 +17,26 @@ function normalizeImages(raw: { image?: string; images?: Array<string | { image?
   return []
 }
 
+function normalizeCategories(raw: {
+  category?: string
+  categories?: Array<string | { category?: string }>
+}): string[] {
+  if (raw.categories?.length) {
+    return raw.categories
+      .map((entry) => (typeof entry === 'string' ? entry : (entry.category ?? '')))
+      .map((category) => category.trim())
+      .filter(Boolean)
+  }
+
+  if (raw.category?.trim()) return [raw.category.trim()]
+
+  return []
+}
+
 function normalizeProduct(
-  raw: Product & {
+  raw: Omit<Product, 'categories'> & {
+    category?: string
+    categories?: Array<string | { category?: string }>
     image?: string
     details?: Array<string | { detail?: string }>
     galleryImages?: Array<string | { image?: string }>
@@ -28,12 +46,20 @@ function normalizeProduct(
     .map((detail) => (typeof detail === 'string' ? detail : (detail.detail ?? '')))
     .filter(Boolean)
 
-  const { image: _image, images: _images, galleryImages: _galleryImages, ...rest } = raw
+  const {
+    image: _image,
+    images: _images,
+    galleryImages: _galleryImages,
+    category: _category,
+    categories: _categories,
+    ...rest
+  } = raw
   const images = normalizeImages(raw)
   const galleryImages = normalizeImages({ images: raw.galleryImages })
 
   return {
     ...rest,
+    categories: normalizeCategories(raw),
     details,
     ...(images.length ? { images } : {}),
     ...(galleryImages.length ? { galleryImages } : {}),
@@ -54,6 +80,10 @@ export function getProduct(slug: string) {
   return getProducts().find((product) => product.slug === slug)
 }
 
-export function getProductsInCategory(category: string, excludeSlug?: string) {
-  return getProducts().filter((product) => product.category === category && product.slug !== excludeSlug)
+export function getRelatedProducts(product: Pick<Product, 'slug' | 'categories'>) {
+  return getProducts().filter(
+    (candidate) =>
+      candidate.slug !== product.slug &&
+      candidate.categories.some((category) => product.categories.includes(category)),
+  )
 }

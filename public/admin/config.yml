@@ -110,7 +110,12 @@ collections:
     fields:
       - { label: Slug, name: slug, widget: string, hint: "URL-friendly id, e.g. everyday-notebook" }
       - { label: Name, name: name, widget: string }
-      - { label: Category, name: category, widget: string }
+      - label: Categories
+        name: categories
+        widget: list
+        min: 1
+        hint: "Add one or more categories, e.g. Vinyl Sticker Sheets and Personalized Label Sheets"
+        field: { label: Category, name: category, widget: string }
       - { label: Price (USD), name: price, widget: number, value_type: float, min: 0 }
       - { label: Description, name: description, widget: text }
       - { label: Details, name: details, widget: list, field: { label: Detail, name: detail, widget: string } }

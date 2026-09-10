@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { getSiteContent } from '@/lib/content'
-import { getProduct, getProducts, getProductsInCategory } from '@/lib/get-products'
-import { formatPrice } from '@/lib/products'
+import { getProduct, getProducts, getRelatedProducts } from '@/lib/get-products'
+import { formatPrice, formatProductCategories } from '@/lib/products'
 import { AddToCart } from '@/components/shop/add-to-cart'
 import {
   CartDrawer,
@@ -25,7 +25,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   if (!product) notFound()
 
   const galleryImages = product.galleryImages ?? []
-  const relatedProducts = getProductsInCategory(product.category, product.slug)
+  const relatedProducts = getRelatedProducts(product)
 
   return (
     <main>
@@ -38,7 +38,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <ProductGallery product={product} productArt={site.productArt} />
           <div className="product-info">
             <p className="eyebrow">
-              {product.category} / {site.productPage.brandName}
+              {formatProductCategories(product.categories)} / {site.productPage.brandName}
             </p>
             <h1>{product.name}</h1>
             <p className="product-description">{product.description}</p>

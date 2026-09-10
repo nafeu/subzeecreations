@@ -8,6 +8,11 @@
   ],
   "color": "#d7dfcf",
   "price": 20,
+  "galleryImages": [
+    "/uploads/img_2472.jpeg",
+    "/uploads/b1335553-75d6-4d88-b18f-4f63ac52401b.jpeg",
+    "/uploads/img_2483.jpeg"
+  ],
   "name": "Fruit Sticker Sheet",
   "slug": "fruit-sticker-sheet",
   "order": 1,

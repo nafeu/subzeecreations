@@ -6,15 +6,20 @@
   ],
   "color": "#ded4b9",
   "price": 20,
+  "galleryImages": [
+    "/uploads/d01c65e9-29ff-40c5-9dba-23d743987a00.jpeg",
+    "/uploads/img_6749.jpeg",
+    "/uploads/img_6775.jpeg",
+    "/uploads/img_6842.jpeg",
+    "/uploads/img_6843.jpeg"
+  ],
   "name": "Gingham Standard Label Sheet",
   "slug": "standard-sticker-sheet",
   "order": 3,
   "pattern": "grid",
   "images": [
-    "/uploads/screenshot-2026-09-09-at-8.18.41\u202fpm.png"
+    "/uploads/screenshot-2026-09-09-at-8.18.41 pm.png"
   ],
   "description": "Gingham vinyl labels peel and stick onto hard, smooth surfaces. Waterproof, stretchy, and durable, they're made to keep up with everyday life. Perfect for small school supplies, toys, and more!",
-  "categories": [
-    "Standard Label Sheets"
-  ]
+  "category": "Standard Label Sheets"
 }

@@ -8,6 +8,12 @@
   ],
   "color": "#ded4b9",
   "price": 20,
+  "galleryImages": [
+    "/uploads/img_6404.jpeg",
+    "/uploads/img_6404.jpeg",
+    "/uploads/img_2581.jpeg",
+    "/uploads/ed3daedc-9698-4220-a800-7c896cb51f37.jpeg"
+  ],
   "name": "Animal Sticker Sheet",
   "slug": "animal-sticker-sheet",
   "order": 1,

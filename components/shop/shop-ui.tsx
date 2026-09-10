@@ -332,7 +332,10 @@ export function CartDrawer({ copy, productArt }: { copy: CartCopy; productArt: P
                             <p>
                               {item.quantity} × {formatPrice(item.price)}
                             </p>
-                            <button className="remove-button" onClick={() => removeItem(item.slug)}>
+                            <button
+                              className="remove-button"
+                              onClick={() => removeItem(item.slug, item.personalization, item.customRequest)}
+                            >
                               Remove
                             </button>
                           </div>

@@ -243,28 +243,31 @@ export async function POST(request: NextRequest) {
   const shopEmail = buildShopOrderEmail(payload)
   const customerEmail = buildCustomerConfirmationEmail(payload)
 
-  const [shopResult, customerResult] = await Promise.all([
-    resend.emails.send({
-      from: fromEmail,
-      to: toEmail,
-      replyTo: payload.customer.email,
-      subject: `New order from ${payload.customer.name}`,
-      text: shopEmail.text,
-      html: shopEmail.html,
-    }),
-    resend.emails.send({
-      from: fromEmail,
-      to: payload.customer.email,
-      replyTo: toEmail,
-      subject: 'Your order has been received!',
-      text: customerEmail.text,
-      html: customerEmail.html,
-    }),
-  ])
+  const shopResult = await resend.emails.send({
+    from: fromEmail,
+    to: toEmail,
+    replyTo: payload.customer.email,
+    subject: `New order from ${payload.customer.name}`,
+    text: shopEmail.text,
+    html: shopEmail.html,
+  })
 
-  if (shopResult.error || customerResult.error) {
-    console.error('Order email failed:', shopResult.error ?? customerResult.error)
+  if (shopResult.error) {
+    console.error('Shop order email failed:', shopResult.error)
     return NextResponse.json({ error: 'Failed to send order email.' }, { status: 502 })
+  }
+
+  const customerResult = await resend.emails.send({
+    from: fromEmail,
+    to: payload.customer.email,
+    replyTo: toEmail,
+    subject: 'Your order has been received!',
+    text: customerEmail.text,
+    html: customerEmail.html,
+  })
+
+  if (customerResult.error) {
+    console.error('Customer confirmation email failed:', customerResult.error)
   }
 
   return NextResponse.json({ ok: true })

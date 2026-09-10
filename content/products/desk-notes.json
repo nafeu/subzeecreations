@@ -1,9 +1,9 @@
 {
   "details": [
     "64 labels total",
-    "32 Small \u2013 25 mm x 10.5 mm",
-    "24 Medium \u2013 35 mm x 16 mm",
-    "8 Large \u2013 50 mm x 20 mm",
+    "32 Small – 25 mm x 10.5 mm",
+    "24 Medium – 35 mm x 16 mm",
+    "8 Large – 50 mm x 20 mm",
     "waterproof, stretchy, and durable"
   ],
   "color": "#ded4b9",
@@ -19,11 +19,12 @@
   "order": 1,
   "pattern": "grid",
   "images": [
-    "/uploads/screenshot-2026-09-07-at-10.04.57\u202fpm.png",
-    "/uploads/screenshot-2026-09-08-at-9.46.57\u202fam.png"
+    "/uploads/screenshot-2026-09-07-at-10.04.57 pm.png",
+    "/uploads/screenshot-2026-09-08-at-9.46.57 am.png"
   ],
-  "description": "Sticker sheet vinyl labels peel and stick onto hard, smooth surfaces. Waterproof, stretchy, and durable, they're made to keep up with everyday life. Perfect for water bottles, cups, bowls, plates, lunch boxes, pencil cases, school supplies, toys, and more!",
   "categories": [
-    "Vinyl Sticker Sheets"
-  ]
+    "Vinyl Sticker Sheets",
+    "Animals"
+  ],
+  "description": "Sticker sheet vinyl labels peel and stick onto hard, smooth surfaces. Waterproof, stretchy, and durable, they're made to keep up with everyday life. Perfect for water bottles, cups, bowls, plates, lunch boxes, pencil cases, school supplies, toys, and more!"
 }

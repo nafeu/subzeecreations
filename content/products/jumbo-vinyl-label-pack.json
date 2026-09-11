@@ -7,6 +7,10 @@
   ],
   "color": "#e7d8cc",
   "price": 20,
+  "galleryImages": [
+    "/uploads/img_6256.jpeg",
+    "/uploads/img_7011.jpeg"
+  ],
   "name": "Animal Jumbo Label Pack",
   "slug": "animal-jumbo-pack",
   "order": 3,

@@ -6,15 +6,18 @@
   ],
   "color": "#ded4b9",
   "price": 20,
+  "galleryImages": [
+    "/uploads/img_6849.jpeg"
+  ],
   "name": "Personalized Mini Label Sheet",
   "slug": "mini-sticker-sheet",
   "order": 6,
   "pattern": "grid",
   "images": [
-    "/uploads/screenshot-2026-09-09-at-8.27.10\u202fpm.png"
+    "/uploads/screenshot-2026-09-09-at-8.27.10 pm.png"
   ],
-  "description": "Mini vinyl labels peel and stick onto hard, smooth surfaces. Waterproof, stretchy, and durable, they're made to keep up with everyday life. Perfect for small school supplies, toys, and more!",
   "categories": [
     "Personalized Label Sheets"
-  ]
+  ],
+  "description": "Mini vinyl labels peel and stick onto hard, smooth surfaces. Waterproof, stretchy, and durable, they're made to keep up with everyday life. Perfect for small school supplies, toys, and more!"
 }

@@ -2,20 +2,38 @@ import { Analytics } from '@vercel/analytics/next'
 import { Jost } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
 import { CartProvider } from '@/components/shop/cart-context'
-import { getSiteContent } from '@/lib/content'
+import { getSiteContent, getSiteUrl } from '@/lib/content'
 import './globals.css'
 
 const jost = Jost({ subsets: ['latin'], weight: ['300', '400', '700'], variable: '--font-jost' })
 
 export function generateMetadata(): Metadata {
   const site = getSiteContent()
+  const siteUrl = getSiteUrl()
 
   return {
-    title: site.meta.title,
+    metadataBase: new URL(siteUrl),
+    title: {
+      default: site.meta.title,
+      template: `%s | ${site.meta.title}`,
+    },
     description: site.meta.description,
     icons: {
       icon: '/logo.svg',
       apple: '/logo.svg',
+    },
+    openGraph: {
+      type: 'website',
+      locale: 'en_CA',
+      url: siteUrl,
+      siteName: site.meta.title,
+      title: site.meta.title,
+      description: site.meta.description,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: site.meta.title,
+      description: site.meta.description,
     },
   }
 }

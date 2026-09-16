@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+import type { Metadata } from 'next'
 import { getSiteContent } from '@/lib/content'
 import { getProduct, getProducts, getRelatedProducts } from '@/lib/get-products'
 import { formatPrice, formatProductCategories } from '@/lib/products'
@@ -15,6 +16,33 @@ import { notFound } from 'next/navigation'
 
 export function generateStaticParams() {
   return getProducts().map((product) => ({ slug: product.slug }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  const product = getProduct(slug)
+
+  if (!product) return {}
+
+  const site = getSiteContent()
+
+  return {
+    title: product.name,
+    description: product.description,
+    openGraph: {
+      title: product.name,
+      description: product.description,
+      siteName: site.meta.title,
+    },
+    twitter: {
+      title: product.name,
+      description: product.description,
+    },
+  }
 }
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
